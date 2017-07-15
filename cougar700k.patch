@@ -1,0 +1,34 @@
+Description: Adding quirks for Cougar 700k keyboard
+ TODO:
+Author: Dmitry B. Khlonin <dpakoha@gmail.com>
+
+---
+
+Origin: none
+Bug: none
+Bug-Debian: none
+Bug-Ubuntu: none
+Forwarded: no
+Reviewed-By: Dmitry B. Khlonin <dpakoha@gmail.com>
+Last-Update: <2016-05-25>
+
+--- linux.orig/drivers/hid/hid-ids.h
++++ linux/drivers/hid/hid-ids.h
+@@ -1054,4 +1054,7 @@
+ #define USB_DEVICE_ID_RAPHNET_2NES2SNES	0x0002
+ #define USB_DEVICE_ID_RAPHNET_4NES4SNES	0x0003
+ 
++#define USB_VENDOR_ID_SOLID_YEAR	0x060b
++#define USB_DEVICE_ID_COUGAR_700K	0x700a
++
+ #endif
+--- linux.orig/drivers/hid/usbhid/hid-quirks.c
++++ linux/drivers/hid/usbhid/hid-quirks.c
+@@ -150,6 +150,7 @@ static const struct hid_blacklist {
+ 	{ USB_VENDOR_ID_MULTIPLE_1781, USB_DEVICE_ID_RAPHNET_4NES4SNES_OLD, HID_QUIRK_MULTI_INPUT },
+ 	{ USB_VENDOR_ID_DRACAL_RAPHNET, USB_DEVICE_ID_RAPHNET_2NES2SNES, HID_QUIRK_MULTI_INPUT },
+ 	{ USB_VENDOR_ID_DRACAL_RAPHNET, USB_DEVICE_ID_RAPHNET_4NES4SNES, HID_QUIRK_MULTI_INPUT },
++	{ USB_VENDOR_ID_SOLID_YEAR, USB_DEVICE_ID_COUGAR_700K, HID_QUIRK_ALWAYS_POLL },
+ 
+ 	{ 0, 0 }
+ };
